@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 import { Link, Prompt } from "react-router-dom";
-import { saveUser } from "../service/getUser";
 import PropTypes from "prop-types";
 import {captcha} from "../service/api";
-
-
-import { Form, Icon, Input, Button, Spin, message, notification } from 'antd';
+import { Form, Icon, Input, Button, Spin } from 'antd';
 import "../css/login.css";
 
 const FormItem = Form.Item;

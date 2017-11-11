@@ -22,9 +22,22 @@ export const logout = () => {
 }
 
 export const captcha = () => {
-    return fetch(SERVER+"/captcha", {
-      credentials: "include"
-    }).then((res) => {
-      return res.json() 
-    })
+  return fetch(SERVER+"/captcha", {
+    credentials: "include"
+  }).then((res) => {
+    return res.json() 
+  })
+}
+
+export const signup = (form) => {
+	return fetch(SERVER+"/signup", {
+		credentials: "include",
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(form)
+	}).then((res) => {
+		return res.json()
+	})
 }

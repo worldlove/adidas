@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import { getUser } from "../../service/getUser";
-import { Layout, Menu, Icon, Button, Dropdown, message } from "antd";
+import { Layout, Menu, Icon, Button, Dropdown } from "antd";
 import { Link } from "react-router-dom";
 
 const {Header} = Layout

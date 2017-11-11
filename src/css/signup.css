@@ -12,3 +12,6 @@
 .signup .signup-form .submit.ant-btn{
 	width: 100%;
 }
+.signup .ant-input-group-addon:last-child {
+    padding: 0;
+}

@@ -1,16 +1,16 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Select, Button} from 'antd';
+import {captcha} from "../service/api";
 import "../css/signup.css";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 
 
 class NormalSignupForm extends Component {
   state = {
     confirmDirty : false,
+    captcha: ""
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -22,22 +22,39 @@ class NormalSignupForm extends Component {
   }
   handleConfirmBlur = (e) => {
     const value = e.target.value;
+    // 两次 输入完毕，并且输入的值补位空，将 confirmDirty 设为true
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
   checkPassword = (rule, value, callback) => {
+    // 第二个password 输入框发起校验
     const form = this.props.form;
+    // 比对第二个框的value  跟第一个输入框的value 是否相等
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+      callback('两次输入的密码不相同');
     } else {
       callback();
     }
   }
   checkConfirm = (rule, value, callback) => {
+    // 第一个password 输入框发起校验
     const form = this.props.form;
+    // 第一个输入框的值不为空， 并且第二个框的值不为空
     if (value && this.state.confirmDirty) {
+      // 调用 第二个输入框的校验函数
       form.validateFields(['confirm'], { force: true });
     }
     callback();
+  }
+  getCaptcha() {
+    captcha().then((data) => {
+      console.log("cap", data);
+      this.setState({
+        captcha: data.captcha
+      })
+    })
+  }
+  componentDidMount() {
+    this.getCaptcha();
   }
 
   render() {
@@ -72,10 +89,31 @@ class NormalSignupForm extends Component {
         },
       },
     };
+   const capImg = (<img style={{height: 28}}
+    onClick={() => this.getCaptcha()}
+    src={"data: image/jpg; base64," + this.state.captcha} alt="验证码"/>)
     return (
+
     	<div className="signup">
         <Form onSubmit={this.handleSubmit} className="signup-form">
         <h1> 欢迎注册 </h1>
+        <FormItem
+          {...formItemLayout}
+          label={(
+            <span>
+              用户名
+            </span>
+          )}
+          hasFeedback
+        >
+          {getFieldDecorator('username', {
+            rules: [{ required: true, message: '用户名不能为空', whitespace: true },
+            {pattern: /[a-zA-Z][0-9a-zA-Z-_]{3,19}/, message: "用户名必须是字母开头，包含字母、数字的4~20的字符串"}
+            ],
+          })(
+            <Input />
+          )}
+        </FormItem>
         <FormItem
           {...formItemLayout}
           label="电子邮箱"
@@ -87,6 +125,7 @@ class NormalSignupForm extends Component {
             }, {
               required: true, message: 'Please input your E-mail!',
             }],
+            validateTrigger: "onBlur"
           })(
             <Input />
           )}
@@ -99,7 +138,12 @@ class NormalSignupForm extends Component {
           {getFieldDecorator('password', {
             rules: [{
               required: true, message: 'Please input your password!',
-            }, {
+            }, 
+            {
+              pattern: /((?=.*[\d])(?=.*[^\d])).{8,}|((?=.*[^A-Za-z])(?=.*[a-zA-Z])).{8,}/,
+              message: "密码必须符合复杂性要求"
+            },
+            {
               validator: this.checkConfirm,
             }],
           })(
@@ -114,29 +158,16 @@ class NormalSignupForm extends Component {
           {getFieldDecorator('confirm', {
             rules: [{
               required: true, message: 'Please confirm your password!',
-            }, {
+            }, 
+            {
+              pattern: /((?=.*[\d])(?=.*[^\d])).{8,}|((?=.*[^A-Za-z])(?=.*[a-zA-Z])).{8,}/,
+              message: "密码必须符合复杂性要求"
+            },
+            {
               validator: this.checkPassword,
             }],
           })(
             <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label={(
-            <span>
-              昵 称&nbsp;
-              <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          )}
-          hasFeedback
-        >
-          {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-          })(
-            <Input />
           )}
         </FormItem>
         <FormItem
@@ -149,29 +180,18 @@ class NormalSignupForm extends Component {
             <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
           )}
         </FormItem>
+
         <FormItem
           {...formItemLayout}
           label="验证码"
-          extra="We must make sure that your are a human."
         >
-          <Row gutter={8}>
-            <Col span={12}>
-              {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: 'Please input the captcha you got!' }],
-              })(
-                <Input size="large" />
-              )}
-            </Col>
-            <Col span={12}>
-              <Button size="large">获取验证码</Button>
-            </Col>
-          </Row>
-        </FormItem>
-        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
-          {getFieldDecorator('agreement', {
+          {getFieldDecorator('captcha', {
             valuePropName: 'checked',
+            initialValue: true,
           })(
-            <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+            <Input 
+            addonAfter={capImg}
+            placeholder="点击重新获取" />
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
