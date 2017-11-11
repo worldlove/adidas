@@ -9,5 +9,4 @@ const removeUser = function() {
 	sessionStorage.removeItem("user");	
 }
 
-
 export {getUser, saveUser, removeUser};

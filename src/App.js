@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ConNav from "./containers/ConNav";
 import ConLogin from "./containers/ConLogin";
-import Signup from "./pages/Signup";
+import ConSignup from "./containers/ConSignup";
 import Home from "./pages/Home";
 import User from "./pages/User";
 import "whatwg-fetch";
@@ -16,7 +16,7 @@ class App extends Component {
         <div className="body">
           <ConNav />
           <Switch>
-            <Route path="/signup" component={Signup}/>
+            <Route path="/signup" component={ConSignup}/>
             <Route path="/login" component={ConLogin}/>
             <Route path="/user" component={User}/>
             <Route exact path="/" component={Home}/>

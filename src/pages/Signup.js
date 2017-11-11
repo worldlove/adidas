@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Form, Input, Select, Button} from 'antd';
+import PropTypes from "prop-types";
 import {captcha} from "../service/api";
 import "../css/signup.css";
 
@@ -8,6 +9,11 @@ const Option = Select.Option;
 
 
 class NormalSignupForm extends Component {
+  static propTypes = {
+    signup: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    error: PropTypes.bool,
+  }
   state = {
     confirmDirty : false,
     captcha: ""
@@ -17,6 +23,7 @@ class NormalSignupForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.signup(values);
       }
     });
   }
@@ -195,7 +202,9 @@ class NormalSignupForm extends Component {
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
-          <Button className="submit" type="primary" htmlType="submit">注 册</Button>
+          <Button className="submit" type="primary" htmlType="submit"
+            loading={this.props.isFetching}
+          >注 册</Button>
         </FormItem>
       </Form>
       </div>
