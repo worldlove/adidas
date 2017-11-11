@@ -1,6 +1,7 @@
 import {login} from "../service/api";
 import {navUsername} from "./nav";
 import {message} from "antd";
+import history from "../service/history";
 
 export const LOGIN_SUBMIT_START = "LOGIN_SUBMIT_START";
 export const LOGIN_SUBMIT_SUCCESS = "LOGIN_SUBMIT_SUCCESS";
@@ -25,8 +26,9 @@ export const loginChunk = (form) => {
 		dispatch(loginStart());
 		login(form).then((resJson) => {
 			if (resJson.OK) {
-				dispatch(loginSuccess(resJson.user));
-				return dispatch(navUsername(resJson.user.username));
+				message.success("登录成功")
+				dispatch(navUsername(resJson.user.username));
+				return history.push("/");
 			} else {
 				message.error(resJson.message);
 				return dispatch(loginError(resJson.message));

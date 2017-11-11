@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Link, Prompt } from "react-router-dom";
 import PropTypes from "prop-types";
 import {captcha} from "../service/api";
-import { Form, Icon, Input, Button, Spin } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import "../css/login.css";
 
 const FormItem = Form.Item;
@@ -18,16 +18,6 @@ class NormalLoginForm extends Component {
   state = {
     captcha: "",
     formHasChanged: false 
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.username) {
-      this.props.history.push("/");
-    } 
-    // if (nextProps.error) {
-    //   console.log("message:", this.props.message)
-    //   console.log("message", message);
-    //   message.info("错误")
-    // }
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -50,13 +40,6 @@ class NormalLoginForm extends Component {
     this.getCaptcha();
   }
   render() {
-    if (this.props.isFetching) {
-      return(
-        <div className="loading">
-          <Spin />
-        </div>
-      )
-    }
 
     const {captcha, formHasChanged} = this.state;
     const { getFieldDecorator } = this.props.form;
@@ -96,7 +79,9 @@ class NormalLoginForm extends Component {
             placeholder="点击重新获取" />
           )}
         </FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" 
+          loading={this.props.isFetching}
+          className="login-form-button">
             登 录
           </Button>
           <Link className="login-form-forgot" to="/forgot-password">
