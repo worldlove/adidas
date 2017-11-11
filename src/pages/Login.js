@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Link, Prompt } from "react-router-dom";
 import { saveUser } from "../service/getUser";
 import PropTypes from "prop-types";
+import {captcha} from "../service/api";
 
 
 import { Form, Icon, Input, Button, Spin, message, notification } from 'antd';
@@ -25,8 +26,6 @@ class NormalLoginForm extends Component {
     if (nextProps.user.username) {
       this.props.history.push("/");
     } 
-    console.log(this.props);
-    console.log("will")
     // if (nextProps.error) {
     //   console.log("message:", this.props.message)
     //   console.log("message", message);
@@ -43,11 +42,7 @@ class NormalLoginForm extends Component {
     });
   }
   getCaptcha() {
-    fetch("http://localhost:3000/captcha", {
-      credentials: "include"
-    }).then((res) => {
-      return res.json() 
-    }).then((data) => {
+    captcha().then((data) => {
       console.log("cap", data);
       this.setState({
         captcha: data.captcha

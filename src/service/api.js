@@ -1,4 +1,4 @@
-export const SERVER = "http://localhost:3000";
+export const SERVER = "http://192.168.1.210:3000";
 
 export const login = (form) => {
 	return fetch(SERVER+"/login", {
@@ -19,4 +19,12 @@ export const logout = () => {
 	}).then((res) => {
 		return res.json();
 	})
+}
+
+export const captcha = () => {
+    return fetch(SERVER+"/captcha", {
+      credentials: "include"
+    }).then((res) => {
+      return res.json() 
+    })
 }
