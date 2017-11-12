@@ -34,7 +34,7 @@ export const loginChunk = (form) => {
 				return dispatch(loginError(resJson.message));
 			}
 		}).catch((err) => {
-			message.error(err.toString());
+			message.error("登录失败" + err.toString());
 			return dispatch(loginError(err.toString()));
 		})
 	}	

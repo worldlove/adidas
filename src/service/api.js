@@ -1,4 +1,4 @@
-export const SERVER = "http://192.168.1.210:3000";
+export const SERVER = process.env.SERVER || "http://192.168.1.210:3000";
 
 export const login = (form) => {
 	return fetch(SERVER+"/login", {

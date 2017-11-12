@@ -33,14 +33,19 @@ class NavHeader extends Component {
   }
   render() {
     const menu = (
-    <Menu>
+    <Menu style={{textAlign: "center"}}>
       <Menu.Item key="1">
         <Link to="/user">
         用户中心
         </Link>
       </Menu.Item>
-      <Menu.Divider />
       <Menu.Item key="2">
+        <Link to="/manage">
+        管理中心
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="3">
         <Button onClick={this.handleLogout.bind(this)}>退出登录</Button>
       </Menu.Item>
     </Menu>
