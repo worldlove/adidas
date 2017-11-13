@@ -1,0 +1,33 @@
+.user {
+	min-height: 500px;
+}
+.user .nav {
+	border-right: 2px solid #aaa;
+	min-height: 500px;
+}
+.user .nav a {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	text-align: center;
+	border-top: 1px solid #aaa;
+}
+.user .nav a:last-child {
+	border-bottom: 1px solid #aaa;
+}	
+.user .nav a:hover {
+	background: #ddd;
+}
+
+.user .manage {
+	background-color: #eee;
+	min-height: 50px;	
+	margin-bottom: 20px;
+}
+.user .private {
+}
+
+.user .manage a {
+	background: #eee;
+}
