@@ -41,3 +41,24 @@ export const signup = (form) => {
 		return res.json()
 	})
 }
+
+export const getCaps = (level) => {
+	return fetch(SERVER+"/manage/category/" + (level || ""), {
+		credentials: "include",
+	}).then((res) => {
+		return res.json()
+	});
+}
+
+export const addCap = (form) => {
+	return fetch(SERVER+"/manage/category", {
+		credentials: "include",
+		"method": "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(form)
+	}).then((res) => {
+		return res.json();
+	})
+}

@@ -3,6 +3,7 @@ import {Switch, Route, Link} from "react-router-dom";
 import {Row, Col, Menu} from "antd";
 import UploadImg from "./components/UploadImg";
 import Product from "./Product";
+import AddCategory from "./AddCategory";
 
 const MenuItem = Menu.Item;
 
@@ -47,6 +48,9 @@ class Manage extends Component {
 								)
 								}/>
 							<Route path="/manage/product" component={Product}/>
+							<Route path="/manage/category" component={
+								AddCategory
+							}/>
 						</Switch>
 					</Col>
 				</Row>
