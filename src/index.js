@@ -17,8 +17,6 @@ if (process.env.NODE_ENV === "development") {
 	middle.push(logger)
 }
 
-console.log(middle);
-
 const store = createStore(
 	rootReducer,
 	applyMiddleware(...middle)
