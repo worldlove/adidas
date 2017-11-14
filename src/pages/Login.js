@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link, Prompt } from "react-router-dom";
 import PropTypes from "prop-types";
-import {captcha} from "../service/api";
+import api from "../service/api";
 import { Form, Icon, Input, Button } from 'antd';
 import "../css/login.css";
 
@@ -29,7 +29,7 @@ class NormalLoginForm extends Component {
     });
   }
   getCaptcha() {
-    captcha().then((data) => {
+    api.captcha().then((data) => {
       console.log("cap", data);
       this.setState({
         captcha: data.captcha

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Form, Input, Button, Transfer, Select, message } from "antd";
-import { getCaps, addCap } from "../service/api";
+import api from "../service/api";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -16,7 +16,7 @@ class AddCategory extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        addCap(values).then((resJson) => {
+        api.addCap(values).then((resJson) => {
         	if (resJson.OK) {
         		message.success("分类添加成功");
         	} else {
@@ -33,10 +33,12 @@ class AddCategory extends Component {
     this.setState({ targetKeys });
   }
   getAllCap2() {
-  	getCaps(2).then((resJson) => {
-  		this.setState({
-  			allCaps: resJson.map((cat) => ({key: cat.name, name: cat.name}))
-  		})
+  	api.getCaps(2).then((resJson) => {
+  		if (resJson.OK) {
+	  		this.setState({
+	  			allCaps: resJson.docs.map((cat) => ({key: cat.name, name: cat.name}))
+	  		})
+  		}
   	});
   }
   componentWillMount() {

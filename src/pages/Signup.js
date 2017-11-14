@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Form, Input, Select, Button} from 'antd';
 import PropTypes from "prop-types";
-import {captcha} from "../service/api";
+import api from "../service/api";
 import "../css/signup.css";
 
 const FormItem = Form.Item;
@@ -53,7 +53,7 @@ class NormalSignupForm extends Component {
     callback();
   }
   getCaptcha() {
-    captcha().then((data) => {
+    api.captcha().then((data) => {
       console.log("cap", data);
       this.setState({
         captcha: data.captcha
