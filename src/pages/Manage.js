@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Category from "./Category";
-import UploadImg from "./components/Upload";
+import UploadImg from "./components/UploadImg";
+import Product from "./Product";
 import {Switch, Route, Link} from "react-router-dom";
 import {Row, Col, Menu} from "antd";
 import "../css/manage.css";
@@ -30,8 +31,13 @@ class Manage extends Component {
 	  </Col>
 	  <Col md={20} xs={16} sm={6}>
 	  <Switch>
+	  <Route path="/manage/product" component={Product}/>
 	  <Route path="/manage/category" component={Category}/>
-	  <Route path="/manage/upload" component={UploadImg}/>
+	  <Route path="/manage/upload" render={() => (
+        <UploadImg max={3} 
+        action="http://localhost:3000/upload"
+        getImgList={()=>{}}
+        />)}/>
 	  </Switch>
 	  </Col>
 	  </Row>

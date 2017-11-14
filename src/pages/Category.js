@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link, Prompt } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Form, Icon, Input, Button, Select, Tooltip, Transfer } from 'antd';
+import { Form, Icon, Input, Button, Select, Tooltip, Transfer, Row, Col } from 'antd';
 import {addCategory, getCategorys} from "../service/api";
 
 const FormItem = Form.Item;
@@ -26,22 +26,25 @@ class NormalCategory extends Component {
     });
   }
   filterOption(inputValue, option) {
-    return option.description.indexOf(inputValue) > -1;
+    console.log(option)
+    return option.title.indexOf(inputValue) > -1;
   }
   handleChange(targetKeys) {
     this.setState({ targetKeys });
   }
   getCat2() {
     getCategorys("2")
-    .then((res) => {
-      console.log("res", res);
-      this.setState({
-        allCat2: res.map((cat, index) => ({
-          key: cat.name,
-          title: cat.name,
-        }))
+      .then((res) => {
+        console.log("res", res);
+        if (res.OK) {
+          this.setState({
+            allCat2: res.docs.map((cat, index) => ({
+              key: cat.name,
+              title: cat.name,
+            }))
+          })
+        }
       })
-    })
   }
   componentDidMount() {
     this.getCat2();
@@ -121,7 +124,21 @@ class NormalCategory extends Component {
         </FormItem>
         : null
       }
-      <Button htmlType="submit">提 交</Button>
+      <Row>
+      <Col span={6}>
+      </Col>
+      <Col span={12}>
+      <Col span={10}>
+      <Button htmlType="submit" type="primary" style={{width: "100%"}}
+      >提 交</Button>
+      </Col>
+      <Col offset={4} span={10}>
+      <Button htmlType="button" style={{width: "100%"}}
+      onClick={() => this.props.history.goBack()}
+      >返 回</Button>
+      </Col>
+      </Col>
+      </Row>
 	  </Form>
 	  </div>
 	)
