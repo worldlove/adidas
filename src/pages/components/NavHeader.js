@@ -71,7 +71,7 @@ class NavHeader extends Component {
             <Item key="productions">
               <Icon type="appstore" />产品列表
             </Item>
-            <SubMenu key={"sport"} title={<span>运动装<Icon type="down" /></span>}>
+            <SubMenu className="nav" key={"sport"} title={<span>运动装<Icon type="down" /></span>}>
               <ItemGroup title="男士">
               <Item key="male:huodong">最新活动</Item>
               <Item key="male:xielei">鞋类</Item>
