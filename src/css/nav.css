@@ -1,0 +1,34 @@
+.navTab .ant-tabs-nav-scroll {
+    height: 64px;
+    line-height: 64px;
+    Background-color: #212121;
+    color: white;
+}
+
+.navTab .ant-tabs-bar {
+    height: 64px;
+    line-height: 64px;
+    Background-color: #212121;
+    color: white;
+}
+.navTab .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-nav-container {
+    height: 64px;
+    line-height: 64px;
+    Background-color: #212121;
+    color: white;
+    }
+
+.navTab .ant-tabs-bar {
+    height: 64px;
+    line-height: 64px;
+    Background-color: #212121;
+    color: white;
+}
+
+.navTab .ant-tabs-bar .tab {
+    background-color: #212121;
+}
+
+.navTab .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab{
+    Background: #212121;
+}

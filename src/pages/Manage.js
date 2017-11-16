@@ -1,62 +1,61 @@
 import React, {Component} from "react";
+import Category from "./AddCategory";
+import Tag from "./AddTag";
+import UploadImg from "./components/UploadImg";
+import NavTab from "./components/NavTabs";
+import Product from "./AddProduct";
 import {Switch, Route, Link} from "react-router-dom";
 import {Row, Col, Menu} from "antd";
-import UploadImg from "./components/UploadImg";
-import Product from "./Product";
-import AddCategory from "./AddCategory";
-
-const MenuItem = Menu.Item;
+import "../css/manage.css";
 
 class Manage extends Component {
-	handleClick(item) {
-		console.log("item", item);
-		this.props.history.push(item.key)
-	}
-	render() {
-		console.log(this.props);
-		return (
-			<div className="manage">
-				<Row>
-					<Col xs={24} sm={8} md={4}
-					style={{minHeight: 400, borderRight: "1px solid #aaa"}}
-					>
-						<h1>管理中心</h1>
-						<Menu
-						onClick={this.handleClick.bind(this)}>
-							<MenuItem key="/manage/category">
-								<Link to="/manage/category">
-									分类管理
-								</Link>
-							</MenuItem>
-							<MenuItem key="/manage/product">
-								<Link to="/manage/product">
-								商品管理
-								</Link>
-							</MenuItem>
-							<MenuItem key="/manage/uploadimg">
-								上传图片
-							</MenuItem>
-						</Menu>
-					</Col>
-					<Col xs={24} sm={16} md={20}>
-						<Switch>
-							<Route path="/manage/uploadimg" render={(props) => (
-								<UploadImg max={3} 
-								getImgList={(list)=> console.log(list)}
-								action="http://localhost:3000/upload"
-								/>
-								)
-								}/>
-							<Route path="/manage/product" component={Product}/>
-							<Route path="/manage/category" component={
-								AddCategory
-							}/>
-						</Switch>
-					</Col>
-				</Row>
-			</div>
-		)
-	}
+  render() {
+	return(
+	  <div className="manage">
+	  <Row>
+	  <Col md={4} xs={8} sm={6} className="nav">
+	  <h1>这里是管理中心</h1>
+	  <hr style={{margin: 10}}/>
+	  <div className="manage">
+	  <h2>管理菜单</h2>
+	  <Menu>
+	  <Menu.Item>
+	  <Link to="/manage/category">增加分类</Link>
+	  </Menu.Item>
+	  <Menu.Item>
+	  <Link to="/manage/tag">增加标签</Link>
+	  </Menu.Item>
+	  <Menu.Item>
+	  <Link to="/manage/product">增加产品</Link>
+	  </Menu.Item>
+	  <Menu.Item>
+	  <Link to="/manage/upload">上传图片</Link>
+	  </Menu.Item>
+	  <Menu.Item>
+	  <Link to="/manage/navbar">测试导航</Link>
+	  </Menu.Item>
+	  </Menu>
+	  </div>
+	  </Col>
+	  <Col md={20} xs={16} sm={6}>
+	  <Switch>
+	  <Route path="/manage/tag" component={Tag}/>
+	  <Route path="/manage/product" component={Product}/>
+      <Route path="/manage/navbar" component={NavTab}/>
+	  <Route path="/manage/category" component={Category}/>
+	  <Route path="/manage/upload" render={
+        () => (
+          <UploadImg max={3}
+          action="http://localhost:3000/upload"
+          getImgList={()=>{}}
+          />)
+      }/>
+	  </Switch>
+	  </Col>
+	  </Row>
+	  </div>
+	)
+  }
 }
 
 export default Manage;

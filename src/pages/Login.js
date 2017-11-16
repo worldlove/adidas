@@ -11,9 +11,7 @@ class NormalLoginForm extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
     actions: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
     error: PropTypes.bool,
-    message: PropTypes.string,
   }
   state = {
     captcha: "",
@@ -40,10 +38,10 @@ class NormalLoginForm extends Component {
     this.getCaptcha();
   }
   render() {
-
     const {captcha, formHasChanged} = this.state;
     const { getFieldDecorator } = this.props.form;
     const capImg = (<img style={{height: 28}}
+      onClick={() => this.getCaptcha()}
       src={"data: image/jpg; base64," + captcha} alt="验证码"/>)
     return (
     	<div className="login">

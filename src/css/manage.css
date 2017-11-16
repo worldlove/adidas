@@ -1,0 +1,16 @@
+.manage {
+	min-height: 500px;
+}
+
+.manage .nav {
+	min-height: 500px;
+	border-right: 1px solid #aaa;
+}
+
+.manage .category {
+	padding: 20px 20px;
+	text-align: center;
+}
+.manage .category h2 {
+	padding: 10px;
+}
