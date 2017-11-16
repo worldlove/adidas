@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import Category from "./Category";
+import Category from "./AddCategory";
+import Tag from "./AddTag";
 import UploadImg from "./components/UploadImg";
 import NavTab from "./components/NavTabs";
-import Product from "./Product";
+import Product from "./AddProduct";
 import {Switch, Route, Link} from "react-router-dom";
 import {Row, Col, Menu} from "antd";
 import "../css/manage.css";
@@ -22,6 +23,9 @@ class Manage extends Component {
 	  <Link to="/manage/category">增加分类</Link>
 	  </Menu.Item>
 	  <Menu.Item>
+	  <Link to="/manage/tag">增加标签</Link>
+	  </Menu.Item>
+	  <Menu.Item>
 	  <Link to="/manage/product">增加产品</Link>
 	  </Menu.Item>
 	  <Menu.Item>
@@ -35,6 +39,7 @@ class Manage extends Component {
 	  </Col>
 	  <Col md={20} xs={16} sm={6}>
 	  <Switch>
+	  <Route path="/manage/tag" component={Tag}/>
 	  <Route path="/manage/product" component={Product}/>
       <Route path="/manage/navbar" component={NavTab}/>
 	  <Route path="/manage/category" component={Category}/>

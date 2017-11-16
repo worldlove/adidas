@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Category from "./Category";
 import {Switch, Route, Link} from "react-router-dom";
 import "../css/user.css";
 import {Row, Col} from "antd";
@@ -19,7 +18,6 @@ class User extends Component {
 				</Col>
 				<Col span={18}>
 					<Switch>
-						<Route path="/manage/category" component={Category}/>
 						<Route path="/user/userinfo" render={() => {
 							return (
 								<div>

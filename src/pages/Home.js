@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import {Carousel} from "antd";
+import {Carousel, Row, Col} from "antd";
+import api from "../service/api";
+import ProductCard from "./components/ProductCard";
 import "../css/home.css";
 
 const imgs = [
@@ -22,6 +24,19 @@ const imgs = [
 ];
 
 class Home extends Component {
+  state = {
+    allProducts: []
+  }
+  getProducts() {
+    api.getProducts().then((res) => {
+      if (res.OK) {
+        this.setState({allProducts: res.docs});
+      }
+    })
+  }
+  componentWillMount() {
+    this.getProducts();
+  }
   render() {
     console.log("Props", this.props);
 	return (
@@ -38,6 +53,17 @@ class Home extends Component {
 		})
 	  }
 	  </Carousel>
+      <div className="product">
+      <Row gutter={10}>
+      {
+        this.state.allProducts.map((product, i) => (
+          <Col span={12} key={i}>
+          <ProductCard key={i} product={product}/>
+          </Col>
+        ))
+      }
+      </Row>
+      </div>
 	  </div>
 	);
   }

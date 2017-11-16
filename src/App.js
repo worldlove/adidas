@@ -6,6 +6,7 @@ import ConSignup from "./containers/ConSignup";
 import Manage from "./pages/Manage";
 import Home from "./pages/Home";
 import User from "./pages/User";
+import Product from "./pages/Product";
 import "whatwg-fetch";
 
 import "./App.css";
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path="/signup" component={ConSignup}/>
             <Route path="/login" component={ConLogin}/>
             <Route path="/user" component={User}/>
+            <Route path="/product/:id" component={Product}/>
             <Route exact path="/" component={Home}/>
           </Switch>
         </div>

@@ -1,26 +1,29 @@
 import React, {Component} from "react";
-import { Link, Prompt } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Form, Icon, Input, Button, Select, Tooltip, Transfer, Row, Col } from 'antd';
-import {addCategory, getCategorys} from "../service/api";
+import { Form, Icon, Input, Button, Select, Tooltip, Transfer, Row, Col, message } from 'antd';
+import api from "../service/api";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 
-class NormalCategory extends Component {
+class NormalTag extends Component {
   state = {
     allCat2: [],
     targetKeys: [],
-    level: "2",
   }
   handleSubmit(e) {
     e.preventDefault();
-	this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        addCategory(values).then((res) => {
+        api.addTag(values).then((res) => {
           console.log("res", res)
+          if (res.OK) {
+            message.success("增加标签成功");
+          } else {
+            message.error(res.message);
+          }
         })
       }
     });
@@ -32,27 +35,27 @@ class NormalCategory extends Component {
   handleChange(targetKeys) {
     this.setState({ targetKeys });
   }
-  getCat2() {
-    getCategorys("2")
+  getCat1() {
+    api.getCaps("1")
       .then((res) => {
         console.log("res", res);
         if (res.OK) {
           this.setState({
             allCat2: res.docs.map((cat, index) => ({
               key: cat.name,
-              title: cat.name,
+              name: cat.name,
             }))
           })
         }
       })
   }
   componentDidMount() {
-    this.getCat2();
+    this.getCat1();
   }
   render() {
     const {level, allCat2, targetKeys} = this.state;
-	const {getFieldDecorator} = this.props.form;
-	const formItemLayout = {
+    const {getFieldDecorator} = this.props.form;
+    const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
         sm: { span: 6 }
@@ -62,18 +65,19 @@ class NormalCategory extends Component {
         sm: { span: 12 }
       },
     };
-	return (
-	  <div className="category">
-	  <h2>新增产品分类</h2>
-	  <Form onSubmit={this.handleSubmit.bind(this)}>
-	  <FormItem
+    return (
+      <div className="tag">
+      <h2>新增产品标签</h2>
+      <p>标签与导航条相关，为另外一种形式的分类, 不可设置过多</p>
+      <Form onSubmit={this.handleSubmit.bind(this)}>
+      <FormItem
       {...formItemLayout}
-      label="分类名称"
+      label="标签名称"
       hasFeedback
       >
       {
         getFieldDecorator('name', {
-          rules: [{ required: true, message: '分类名不能为空', whitespace: true },
+          rules: [{ required: true, message: '标签名不能为空', whitespace: true },
           ]
         })(
           <Input />
@@ -82,31 +86,26 @@ class NormalCategory extends Component {
       </FormItem>
       <FormItem
       {...formItemLayout}
-      label={<span>分类等级<Tooltip title="两级分类，一表示大类，二表示小类"><Icon type="question-circle-o"/></Tooltip></span>}
+      label={<span>标签优先级<Tooltip title="标签优先级为标签的分类和排序依据">
+        <Icon type="question-circle-o"/></Tooltip></span>}
       >
-	  {
-        getFieldDecorator('level', {
-		  initialValue: level,
-	    })(
-		  <Select onChange={(level) => this.setState({level})}>
-		  <Option value="1">一级</Option>
-		  <Option value="2">二级</Option>
-		  </Select>
-	    )
+      {
+        getFieldDecorator('priority', {
+          rules: [{ required: true, message: '标签等级不能为空', whitespace: true },
+          ]})(
+          <Input />
+        )
       }
       </FormItem>
-      {
-        level !== "2" ?
         <FormItem
         {...formItemLayout}
-        label={<span>分类等级<Tooltip title="两级分类，一表示大类，二表示小类"><Icon type="question-circle-o"/></Tooltip></span>}
+        label={<span>包含分类<Tooltip title="标签所包含的分类"><Icon type="question-circle-o"/></Tooltip></span>}
         >
         {
           getFieldDecorator('children', {
-            initialValue: '2',
           })(
             <Transfer
-            titles={["未选择二级分类","已选择二级分类"]}
+            titles={["未选择分类","已选择分类"]}
             dataSource={this.state.allCat2}
             showSearch
             listStyle={{
@@ -117,13 +116,11 @@ class NormalCategory extends Component {
             filterOption={this.filterOption}
             targetKeys={this.state.targetKeys}
             onChange={this.handleChange.bind(this)}
-            render={item => item.title}
+            render={item => item.name}
             />
           )
         }
         </FormItem>
-        : null
-      }
       <Row>
       <Col span={6}>
       </Col>
@@ -139,10 +136,10 @@ class NormalCategory extends Component {
       </Col>
       </Col>
       </Row>
-	  </Form>
-	  </div>
-	)
+      </Form>
+      </div>
+    )
   }
 }
 
-export default Form.create()(NormalCategory);
+export default Form.create()(NormalTag);
