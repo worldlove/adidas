@@ -23,6 +23,10 @@ const apiConfig = {
   addProduct: ["/manage/product", "POST", "json"],
   getProducts: ["/manage/product", "GET", "query"],
   getProduct: ["/manage/product", "GET", "path"],
+
+  addCart: ["/shoppingcart", "POST", "json"],
+  getCart: ["/shoppingcart"],
+  delCart: ["/shoppingcart", "DELETE", "path"],
 }
 
 const takeConfigToFunc = (config) => {

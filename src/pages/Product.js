@@ -1,11 +1,14 @@
 import React, {Component} from "react";
 import api from "../service/api";
 import ProductCard from "./components/ProductCard";
-import {Row, Col, Spin, message} from "antd";
+import AddButton from "./components/AddButton";
+import ShoppingCart from "./components/ShoppingCart";
+import {Row, Col, Spin, message, Button} from "antd";
 
 class Product extends Component {
   state= {
-    product: {}
+    product: {},
+    count: 1,
   }
   componentWillMount() {
     console.log(this.props);
@@ -19,6 +22,23 @@ class Product extends Component {
       }
     })
   }
+  handleCount(value) {
+    console.log("count", value);
+    this.setState({
+      count: value
+    });
+  }
+  handleAddCart() {
+    const postData = [{
+      pid: this.state.product._id,
+      num: this.state.count
+    }];
+    console.log("addCart", postData);
+    api.addCart(postData).then((res) => {
+      console.log("res", res);
+    })
+  }
+
   render() {
     const {product} = this.state;
     if (!product.images) {
@@ -32,6 +52,13 @@ class Product extends Component {
       </Col>
       <Col span={16}>
       <h1>商品详情</h1>
+      <AddButton onChange={this.handleCount.bind(this)}
+        defaultValue={this.state.count}
+      />
+
+      <Button onClick={this.handleAddCart.bind(this)}>加入购物车</Button>
+      <hr/>
+      <ShoppingCart />
       </Col>
       </Row>
       </div>
