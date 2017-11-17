@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import {Carousel, Row, Col} from "antd";
+import {Carousel, Row, Col, message} from "antd";
 import api from "../service/api";
 import ProductCard from "./components/ProductCard";
+import ShoppingCart from "./components/ShoppingCart";
 import "../css/home.css";
 
 const imgs = [
@@ -31,6 +32,8 @@ class Home extends Component {
     api.getProducts().then((res) => {
       if (res.OK) {
         this.setState({allProducts: res.docs});
+      } else {
+        message.error("获取商品列表失败: " + res.message, 0);
       }
     })
   }
@@ -41,6 +44,9 @@ class Home extends Component {
     console.log("Props", this.props);
 	return (
 	  <div className="home">
+      <div style={{position: "absolute", right: 200, top: 150}}>
+      <ShoppingCart/>
+      </div>
 	  <Carousel autoplay>
 	  {
 		imgs.map((img, i) => {

@@ -1,0 +1,99 @@
+.shoppingCart {
+    position: relative;
+    z-index: 1002;
+}
+.shoppingCart >.ant-btn{
+    padding: 0px 30px;
+}
+.shoppingCart .spin {
+    position: relative;
+    text-align: center;
+    display: block;
+    margin: auto;
+    Background: #eee;
+    padding: 20px;
+}
+.shoppingCart:hover button.ant-btn {
+    border: 1px solid #424242;
+    z-index: 999;
+    border-bottom: none;
+}
+
+.shoppingCart h3{
+    padding: 10px;
+    font-size: 16px;
+}
+
+.shoppingCart .cart{
+    background-color: white;
+    margin-top: -1px;
+    width: 350px;
+    border: 1px solid #424242;
+    min-height: 100px;
+    position: absolute;
+    right: 0;
+
+}
+.shoppingCart .cartList{
+    max-height: 200px;
+    overflow: auto;
+}
+.shoppingCart .cartItem {
+    height: 80px;
+    position: relative;
+    padding: 5px 10px;
+    border-bottom: 1px dashed #ddd;
+    cursor: pointer;
+}
+.shoppingCart .cartItem:hover {
+    background-color: #eee;
+}
+.shoppingCart .cartItem img {
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+}
+.shoppingCart .cartItem h4 {
+    font-size: 20px;
+    font-weight: 300;
+    position: absolute;
+    top: 5px;
+    left: 85px;
+}
+.shoppingCart .cartItem p {
+    font-size: 16px;
+    color: #616667;
+    position: absolute;
+    top: 40px;
+    left: 85px;
+}
+.shoppingCart .cartItem span {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.shoppingCart .cartItem button {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    padding: 3px 12px;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+.shoppingCart .cartItem button:hover {
+    color: red;
+}
+.shoppingCart .cartFooter {
+    padding: 5px 10px;
+    position: relative;
+    Background: #ddd;
+}
+.shoppingCart .cartFooter p{
+    padding: 5px;
+}
+.shoppingCart .cartFooter button.ant-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}

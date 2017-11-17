@@ -58,7 +58,9 @@ class Product extends Component {
 
       <Button onClick={this.handleAddCart.bind(this)}>加入购物车</Button>
       <hr/>
+      <div style={{position: "absolute", right: 50}}>
       <ShoppingCart />
+      </div>
       </Col>
       </Row>
       </div>
