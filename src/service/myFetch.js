@@ -31,7 +31,17 @@ const myFetch = function(path, method="GET", ctype="json", payload="") {
     default:
       break;
   }
-  return fetch(url, options).then((res) => {return res.json()});
+  return fetch(url, options).then((res) => {
+    if (res.status < 400) {
+      const cType = res.headers.get("Content-Type")
+      if (cType.indexOf("json")> -1) {
+        return res.json()
+      } else {
+        return {OK: false, message: "数据类型错误，需要json 但是收到"+cType}
+      }
+    }
+    return {OK: false, message: res.statusText} 
+  });
 }
 
 

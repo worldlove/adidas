@@ -94,11 +94,13 @@ class NavHeader extends Component {
           </Menu>
           { this.props.username ? 
 
+            <div>
               <Dropdown overlay={menu}>
                 <Button icon="user" className="user-btn">
                 <span> {this.props.username}</span>
                 </Button>
               </Dropdown>
+            </div>
             :
             <div className="user">
             <Link to="/login">

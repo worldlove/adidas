@@ -9,6 +9,7 @@ module.exports = function override(config, env) {
     	"@font-size-base": "14px",
     	"@border-radius-base": "0",
     	"@btn-height-base": "32px",
+      "@btn-height-lg": "40px",
       "@layout-header-background": "#101010"
     },
   });

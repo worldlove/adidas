@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Carousel, Row, Col} from "antd";
 import api from "../service/api";
 import ProductCard from "./components/ProductCard";
+import ConCart from "../containers/ConCart";
 import "../css/home.css";
 
 const imgs = [
@@ -41,6 +42,9 @@ class Home extends Component {
     console.log("Props", this.props);
 	return (
 	  <div className="home">
+    <div style={{position: "absolute", "right": 300, top: 100}}>
+    <ConCart />
+    </div>
 	  <Carousel autoplay>
 	  {
 		imgs.map((img, i) => {
