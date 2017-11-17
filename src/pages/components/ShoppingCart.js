@@ -47,12 +47,12 @@ class ShoppingCart extends Component {
 				{
 					showList ?
 					<div className="cart">
+						<h3>最近添加的商品</h3>
 						{
 							isFetching ? 
 							<Spin className="spin"/>	
 							:
 							<div className="cartList">
-							<h3>最近添加的商品</h3>
 							{
 								cartList.length > 0 ?
 								cartList.map((cart, i) => {
@@ -67,12 +67,12 @@ class ShoppingCart extends Component {
 								})
 								: <p className="emputy">购物车空空如也</p>
 							}
-							<div className="cartFooter">
-								<p>共{countn}件商品，共计￥{sum.toFixed(2)}</p>
-								<Button type="primary">去购物车</Button>
-							</div>
 							</div>
 						}
+						<div className="cartFooter">
+							<p>共{countn}件商品，共计￥{sum.toFixed(2)}</p>
+							<Button type="primary">去购物车</Button>
+						</div>
 					</div>
 					:null
 				}

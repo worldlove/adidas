@@ -19,7 +19,7 @@ class App extends Component {
         <div className="body">
           <ConNav />
 
-          <div style={{position: "absolute", top: 10, right: 400}}>
+          <div style={{position: "absolute", top: 13, right: 400}}>
             <ConCart/>
           </div>
           <Switch>

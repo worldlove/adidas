@@ -29,12 +29,16 @@
 	right: 0;
 	z-index: 998;
 	width: 320px;
-	max-height: 300px;
 	border: 1px solid #424242;
 	background-color: #fff;
 }
-.shoppingCart .cart .cartList h3{
+.shoppingCart .cart .cartList{
+	max-height: 200px;
+	overflow: auto;
+}
+.shoppingCart .cart h3{
 	padding: 10px;
+
 }
 .shoppingCart .cart .cartItem{
 	position: relative;
