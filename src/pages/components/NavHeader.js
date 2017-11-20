@@ -34,14 +34,19 @@ class NavHeader extends Component {
   render() {
     const menu = (
     <Menu style={{textAlign: "center"}}>
-      <Menu.Item key="1">
+      <Menu.Item key="/user">
         <Link to="/user">
         用户中心
         </Link>
       </Menu.Item>
-      <Menu.Item key="manage">
+      <Menu.Item key="/manage">
         <Link to="/manage">
         管理中心
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="/order">
+        <Link to="/order">
+        用户订单
         </Link>
       </Menu.Item>
       <Menu.Divider />

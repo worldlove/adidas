@@ -1,0 +1,116 @@
+.order {
+	margin: auto;
+	width: 1024px;
+	max-width: 1024px;
+	min-height: 1024px;
+	padding: 10px;
+}
+
+.order .contact {
+	position: relative;
+	border: 1px solid #aaa; 
+	padding: 10px 10px;
+	overflow: hidden;
+}
+.order .contact .zhezhao{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	z-index: 999;
+	background: #fff;
+	padding: 20px;
+	overflow: ;
+}
+.order .contact button.ant-btn.new {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: none;
+}
+.order .contact button.ant-btn.new:hover {
+	color: #4466bb;
+}
+.order .contact .ant-radio-group {
+	width: 100%;
+	margin-bottom: 50px;
+	max-height: 40px;
+	overflow: hidden;
+}
+.order .contact .ant-radio-group.more {
+	max-height: 180px;
+	overflow: auto;
+}
+
+.order .contact h3 {
+	padding: 10px 0 20px 0;
+}
+.order .radioButton {
+	position: relative;
+	padding: 0 20px;
+}
+
+.radioButton div {
+	display: inline-block;
+}
+.radioButton div.info {
+	position: relative;
+	top: -10px;
+}
+.radioButton div.info .name {
+	width: 100px;
+}
+.radioButton div.info .address {
+	width: 300px;
+}
+.radioButton div.info .phone {
+	width: 100px;
+}
+.radioButton div.info .default {
+	height: 20px;
+	line-height: 20px;
+	padding: 0 10px;
+	background: #999;
+	color: #fff;
+	border-radius: 10px;
+}
+.radioButton div.op {
+	right: 20px;
+	position: absolute;
+}
+.radioButton {
+	height: 32px;
+	line-height: 32px;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.radioButton:hover {
+	background: #edd;
+}
+.radioButton .ant-radio-button-wrapper {
+	line-height: 32px;
+	height: 32px;
+	width: 120px;
+	margin-right: 20px;
+	text-align: center;
+	overflow: hidden;
+}
+.radioButton .ant-radio-button-wrapper-checked:after {
+	content: "\2713";
+	font-size: 16px;
+	position: absolute;
+	z-index: 999;
+	color: #fff;
+	top: 8px;
+	right: 0px;
+}
+.radioButton .ant-radio-button-wrapper .ant-radio-button-checked:after {
+	content: "";
+	width: 30px;
+	height: 30px;
+	background: #212121;
+	position: absolute;
+	transform: rotate(45deg);
+	top: 15px;
+	right: -15px;
+	z-index: 998;
+}

@@ -7,6 +7,7 @@ import ConCart from "./containers/ConCart";
 import Manage from "./pages/Manage";
 import Home from "./pages/Home";
 import User from "./pages/User";
+import Order from "./pages/Order";
 import ConProduct from "./containers/ConProduct";
 import "whatwg-fetch";
 
@@ -23,6 +24,7 @@ class App extends Component {
             <ConCart/>
           </div>
           <Switch>
+            <Route path="/order" component={Order}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/signup" component={ConSignup}/>
             <Route path="/login" component={ConLogin}/>

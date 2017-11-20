@@ -27,6 +27,12 @@ const apiConfig = {
   addCart: ["/shoppingcart", "POST", "json"],
   getCart: ["/shoppingcart"],
   delCart: ["/shoppingcart", "DELETE", "path"],
+
+  addContact: ["/contact", "POST", "json"],
+  getContact: ["/contact"],
+  updateContact: ["/contact", "PUT", "json"],
+  delContact: ["/contact", "DELETE", "path"],
+  defaultContact: ["/contact", "GET", "path"],
 }
 
 const takeConfigToFunc = (config) => {
