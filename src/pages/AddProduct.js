@@ -6,6 +6,20 @@ import api from "../service/api";
 const FormItem = Form.Item;
 const Option = Select.Option;
 
+const parseQueryToObj = function(str) {
+  const res = {};
+  const strArr = str.split("&");
+  for (let item of strArr) {
+    const it = item.split("=");
+    if (res[it[0]]) {
+      res[it[0]] = [res[it[0]], it[1]]
+    } else {
+      res[it[0]] = it[1];
+    }
+  }
+  return res;
+}
+
 class NormalProduct extends Component {
   state = {
     imgList: [],
@@ -26,6 +40,7 @@ class NormalProduct extends Component {
         console.log("values", values);
         values.images = this.state.imgList;
         console.log("values", values);
+        values.detail = parseQueryToObj(values.detail);
         api.addProduct(values).then((res) => {
           if (res.OK) {
             message.success("增加商品成功")
@@ -131,6 +146,34 @@ class NormalProduct extends Component {
         validateTrigger: "onBlur"
       })(
         <Input type="number"/>
+      )}
+      </FormItem>
+      <FormItem
+      {...formItemLayout}
+      label="商品行业类型"
+      hasFeedback
+      >
+      {getFieldDecorator('industryCat', {
+        rules: [{
+          required: true, message: '输入商品行业类型',
+        }],
+        validateTrigger: "onBlur"
+      })(
+        <Input type="string"/>
+      )}
+      </FormItem>
+      <FormItem
+      {...formItemLayout}
+      label="商品详情"
+      hasFeedback
+      >
+      {getFieldDecorator('detail', {
+        rules: [{
+          required: true, message: '输入商品详情，用key=value&key=value',
+        }],
+        validateTrigger: "onBlur"
+      })(
+        <Input type="string"/>
       )}
       </FormItem>
       <FormItem

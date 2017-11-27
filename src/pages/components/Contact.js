@@ -23,7 +23,7 @@ class Contact extends Component {
 	}
 	getContact() {
 		api.getContact().then((res) => {
-			this.setState({allContacts: res.docs});
+		  this.setState({allContacts: res.docs || []});
 		})
 	}
 	addContact(form) {
@@ -123,11 +123,14 @@ class Contact extends Component {
 					</RadioGroup>
 				}
 				<div className="zhezhao">
+                {allContacts && allContacts.length > 0 ?
 				<Button size="small"
 				onClick={()=> this.setState({moreBtn: !this.state.moreBtn})}
 				>{moreBtn ? "收起" : "更多"}地址</Button>
+                  :<p style={{color: "#aaa"}}>没有收货人信息，点击右上角新增</p>
+                }
 				</div>
-				{showModal ? 
+				{showModal ?
 				<ContactModal visible={showModal}
 				title={title}
 				handleOk={okModal}

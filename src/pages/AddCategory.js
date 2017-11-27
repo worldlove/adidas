@@ -16,7 +16,7 @@ class NormalCategory extends Component {
 	this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        api.addCat(values).then((res) => {
+        api.addCap(values).then((res) => {
           console.log("res", res)
         })
       }

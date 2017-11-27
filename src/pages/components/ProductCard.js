@@ -9,13 +9,13 @@ class ProductCard extends Component {
   }
   render() {
     const {
-      name, description, price, images, _id
+      name, description, price, image, _id
     } = this.props.product;
     return (
       <Card bodyStyle={{ padding: 2, cursor: "pointer" }}>
       <Link to={"/product/"+_id}>
         <div className="custom-image">
-          <img alt="example" width="100%" src={images[0]}/>
+          <img alt="example" width="100%" src={image}/>
         </div>
         <div className="custom-card">
           <h3>{name}</h3>

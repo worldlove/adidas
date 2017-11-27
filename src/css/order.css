@@ -18,8 +18,8 @@
 	width: 100%;
 	z-index: 999;
 	background: #fff;
-	padding: 20px;
-	overflow: ;
+	padding: 12px 20px;
+	overflow: hidden;
 }
 .order .contact button.ant-btn.new {
 	position: absolute;
@@ -46,7 +46,7 @@
 }
 .order .radioButton {
 	position: relative;
-	padding: 0 20px;
+    margin: 0 20px 10px 20px;
 }
 
 .radioButton div {
@@ -74,7 +74,7 @@
 	border-radius: 10px;
 }
 .radioButton div.op {
-	right: 20px;
+	right: 40px;
 	position: absolute;
 }
 .radioButton {
